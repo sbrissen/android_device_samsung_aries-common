@@ -43,7 +43,7 @@
             android:defaultValue="23" />
 	</PreferenceCategory>
 
-	<PreferenceCategory
+<!--	<PreferenceCategory
 		android:title="@string/category_tvout_title">
 		<CheckBoxPreference
 			android:key="tvout_enable"
@@ -59,7 +59,7 @@
 			android:entries="@array/tvout_system_entries"
 			android:entryValues="@array/tvout_system_entries_values"
 			android:defaultValue="2" />
-	</PreferenceCategory>
+	</PreferenceCategory> -->
 
         <PreferenceCategory
             android:title="@string/category_volume_boost_title"
