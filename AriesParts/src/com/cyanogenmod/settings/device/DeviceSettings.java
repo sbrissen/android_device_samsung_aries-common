@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-//import android.hardware.TvOut;
+import android.hardware.TvOut;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
@@ -19,8 +19,8 @@ public class DeviceSettings extends PreferenceActivity  {
     public static final String KEY_BACKLIGHT_TIMEOUT = "backlight_timeout";
     public static final String KEY_HSPA = "hspa";
     public static final String KEY_HSPA_CATEGORY = "category_radio";
-    //public static final String KEY_TVOUT_ENABLE = "tvout_enable";
-    //public static final String KEY_TVOUT_SYSTEM = "tvout_system";
+    public static final String KEY_TVOUT_ENABLE = "tvout_enable";
+    public static final String KEY_TVOUT_SYSTEM = "tvout_system";
     public static final String KEY_VOLUME_BOOST = "volume_boost";
     public static final String KEY_VOLUME_CATEGORY = "category_volume_boost";
 
@@ -28,9 +28,9 @@ public class DeviceSettings extends PreferenceActivity  {
     private ListPreference mMdnie;
     private ListPreference mBacklightTimeout;
     private ListPreference mHspa;
-    //private CheckBoxPreference mTvOutEnable;
-    //private ListPreference mTvOutSystem;
-    //private TvOut mTvOut;
+    private CheckBoxPreference mTvOutEnable;
+    private ListPreference mTvOutSystem;
+    private TvOut mTvOut;
     private VolumeBoostPreference mVolumeBoost;
 
     private BroadcastReceiver mHeadsetReceiver = new BroadcastReceiver() {
@@ -38,7 +38,7 @@ public class DeviceSettings extends PreferenceActivity  {
         @Override
         public void onReceive(Context context, Intent intent) {
             int state = intent.getIntExtra("state", 0);
-            //updateTvOutEnable(state != 0);
+            updateTvOutEnable(state != 0);
         }
 
     };
@@ -75,7 +75,7 @@ public class DeviceSettings extends PreferenceActivity  {
             getPreferenceScreen().removePreference(category);
         }
 
-      /*  mTvOut = new TvOut();
+        mTvOut = new TvOut();
         mTvOutEnable = (CheckBoxPreference) findPreference(KEY_TVOUT_ENABLE);
         mTvOutEnable.setChecked(mTvOut._isEnabled());
 
@@ -107,7 +107,7 @@ public class DeviceSettings extends PreferenceActivity  {
                 return true;
             }
 
-        }); */
+        }); 
     }
 
     @Override
@@ -122,7 +122,7 @@ public class DeviceSettings extends PreferenceActivity  {
         unregisterReceiver(mHeadsetReceiver);
     }
 
- /*   private void updateTvOutEnable(boolean connected) {
+    private void updateTvOutEnable(boolean connected) {
         mTvOutEnable.setEnabled(connected);
         mTvOutEnable.setSummaryOff(connected ? R.string.tvout_enable_summary : R.string.tvout_enable_summary_nocable);
 
@@ -130,11 +130,11 @@ public class DeviceSettings extends PreferenceActivity  {
             // Disable on unplug (UI)
             mTvOutEnable.setChecked(false);
         }
-    } */
+    }
 
     @Override
     protected void onDestroy() {
-      //  mTvOut.finalize();
+        mTvOut.finalize();
         super.onDestroy();
     }
 
