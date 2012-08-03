@@ -43,7 +43,7 @@ public class DeviceSettings extends PreferenceActivity  {
         @Override
         public void onReceive(Context context, Intent intent) {
             int state = intent.getIntExtra("state", 0);
-            updateTvOutEnable(state != 0);
+           // updateTvOutEnable(state != 0);
         }
 
     };
@@ -92,7 +92,7 @@ public class DeviceSettings extends PreferenceActivity  {
             getPreferenceScreen().removePreference(category);
         }
 
-        mTvOut = new TvOut();
+ /*       mTvOut = new TvOut();
         mTvOutEnable = (CheckBoxPreference) findPreference(KEY_TVOUT_ENABLE);
         mTvOutEnable.setChecked(mTvOut._isEnabled());
 
@@ -124,7 +124,7 @@ public class DeviceSettings extends PreferenceActivity  {
                 return true;
             }
 
-        }); 
+        }); */
     }
 
     @Override
@@ -151,7 +151,7 @@ public class DeviceSettings extends PreferenceActivity  {
 
     @Override
     protected void onDestroy() {
-        mTvOut.finalize();
+      //  mTvOut.finalize();
         super.onDestroy();
     }
 
